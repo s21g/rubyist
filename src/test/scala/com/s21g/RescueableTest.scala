@@ -1,7 +1,7 @@
 import org.scalatest.Spec
 import org.scalatest.matchers.ShouldMatchers
 
-class Rescueable extends Spec with ShouldMatchers {
+class RescueableTest extends Spec with ShouldMatchers {
   describe("rescue") {
     import com.s21g.rubyist.Rescue._
 
