@@ -1,0 +1,29 @@
+rubyist
+=======
+
+  A scala goodies for rubyist.
+
+
+Features
+========
+
+  This provides following features those are well-known to rubyist.
+
+  * rescue
+
+
+Usage
+=====
+
+  import com.s21g.rubyist.Rescue._
+  val num = "1234x1234".toLong rescue 0
+  
+
+Required
+========
+
+  * tested on Scala-2.8.0.RC2
+
+
+Authors: info@s21g.com
+Links: http://github.com/s21g/rubyist
