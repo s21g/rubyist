@@ -11,6 +11,7 @@ Features
 
   * rescue
   * Pathname#{read,write}
+  * md5
 
 
 Usage
@@ -33,6 +34,10 @@ Usage
   log.exists           // => true
   log.read             // => "Ruby\nScala"
   log.readlines        // => List("Ruby", "Scala")
+
+  // md5
+  import com.s21g.rubyist.Digest
+  Digest.MD5.hexdigest("ruby") // => "58e53d1324eef6265fdb97b08ed9aadf"
 
 
 Required
