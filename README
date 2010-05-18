@@ -10,14 +10,29 @@ Features
   This provides following features those are well-known to rubyist.
 
   * rescue
+  * Pathname#{read,write}
 
 
 Usage
 =====
 
+  // rescue
+
   import com.s21g.rubyist.Rescue._
-  val num = "1234x1234".toLong rescue 0
+  val num = "1".toInt           // => 1
+  val num = "x".toInt           // java.lang.NumberFormatException
+  val num = "x".toInt rescue 0  // => 0
   
+  // Pathname
+
+  import com.s21g.rubyist.Pathname
+  val log = Pathname("logs/debug.log")
+  log.exists           // => false
+  log.mkpath
+  log.write("rubyist")
+  log.exists           // => true
+  log.read             // "rubyist"
+
 
 Required
 ========
