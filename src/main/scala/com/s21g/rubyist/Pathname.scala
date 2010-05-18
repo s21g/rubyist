@@ -28,5 +28,5 @@ class Pathname(path:String) {
     finally{ out.close }
   }
 
-  def mkpath = new java.io.File(_path.parent.path).mkdirs
+  def mkpath = new java.io.File(path).mkdirs
 }

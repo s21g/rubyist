@@ -34,12 +34,25 @@ class PathnameTest extends Spec with ShouldMatchers {
 
     describe("should make path") {
       cleanDir("tmp")
+      val path = Pathname("tmp/foo/bar")
+      path.exists should be(false)
+      path.isDirectory should be(false)
+
+      path.mkpath
+      path.exists should be(true)
+      path.isDirectory should be(true)
+    }
+
+/*
+    describe("should make parent path") {
+      cleanDir("tmp")
       val path = Pathname("tmp/foo/bar/debug.log")
       path.parent.exists should be(false)
 
-      path.mkpath
+      path.mkparent			// Not Implemented Yet
       path.parent.exists should be(true)
       path.exists should be(false)
     }
+    */
   }
 }

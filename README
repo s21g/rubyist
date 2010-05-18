@@ -28,7 +28,7 @@ Usage
   import com.s21g.rubyist.Pathname
   val log = Pathname("log/langs.txt")
   log.exists           // => false
-  log.mkpath
+  log.parent.mkpath
   log.write("Ruby\nScala")
   log.exists           // => true
   log.read             // => "Ruby\nScala"
