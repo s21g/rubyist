@@ -14,11 +14,13 @@ object Pathname {
 class Pathname(path:String) {
   private val _path = Path(path)
 
-  def read(): String = {
+  def readlines = {
     val in = Source.fromPath(path)
-    try{ in.mkString }
-    finally{ in.close }
+    try { in.getLines().toList }
+    finally { in.close }
   }
+  def read: String = readlines.mkString
+//.foldLeft(init) { _ + _.trim }
 
   def write(buffer:String): Unit = {
     val out = new FileWriter(path)
