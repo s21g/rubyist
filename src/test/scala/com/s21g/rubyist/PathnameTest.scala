@@ -3,6 +3,8 @@ import org.scalatest.matchers.ShouldMatchers
 
 import java.io.File
 
+import com.s21g.rubyist.Pathname
+
 class PathnameTest extends Spec with ShouldMatchers {
   // TODO: delete files recursively
   def cleanDir(path:String): Unit = {
@@ -11,9 +13,23 @@ class PathnameTest extends Spec with ShouldMatchers {
     dir.mkdirs
   }
 
-  describe("Pathname") {
-    import com.s21g.rubyist.Pathname
+  val langs = Pathname("src/test/resources/Pathname/langs.txt")
 
+  describe("Pathname") {
+    // ----------------------------------------------------------------------
+    // Accessors
+    describe("should act as Path") {
+      langs.name should equal("langs.txt")
+      langs.path.path should equal("src/test/resources/Pathname/langs.txt")
+    }
+
+    describe("should provide extname") {
+      Pathname("foo.log").extname should equal(".log")
+      Pathname("foo").extname should equal("")
+    }
+
+    // ----------------------------------------------------------------------
+    // Actions
     describe("should write and read files") {
       cleanDir("tmp")
       val path = Pathname("tmp/foo.txt")
@@ -22,7 +38,6 @@ class PathnameTest extends Spec with ShouldMatchers {
     }
 
     describe("should read lines") {
-      val langs = Pathname("src/test/resources/Pathname/langs.txt")
       langs.readlines should equal(List("Ruby","Scala"))
     }
 
@@ -30,11 +45,6 @@ class PathnameTest extends Spec with ShouldMatchers {
       cleanDir("tmp")
       Pathname("tmp").exists should be(true)
       Pathname("tmp/foo").exists should be(false)
-    }
-
-    describe("should provide extname") {
-      Pathname("foo.log").extname should equal(".log")
-      Pathname("foo").extname should equal("")
     }
 
     describe("should make path") {
