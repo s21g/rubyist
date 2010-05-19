@@ -20,7 +20,7 @@ class PathnameTest extends Spec with ShouldMatchers {
     // Accessors
     describe("should act as Path") {
       langs.name should equal("langs.txt")
-      langs.path.path should equal("src/test/resources/Pathname/langs.txt")
+      langs.path should equal("src/test/resources/Pathname/langs.txt")
     }
 
     describe("should provide extname") {
