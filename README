@@ -10,8 +10,9 @@ Features
   This provides following features those are well-known to rubyist.
 
   * rescue
-  * Pathname#{read,write}
   * md5
+  * Pathname#{read,write}
+  * Hashname
 
 
 Usage
@@ -24,6 +25,12 @@ Usage
   val num = "x".toInt           // java.lang.NumberFormatException
   val num = "x".toInt rescue 0  // => 0
   
+  // md5
+
+  import com.s21g.rubyist.Digest
+  Digest.MD5.hexdigest("ruby") // => "58e53d1324eef6265fdb97b08ed9aadf"
+
+
   // Pathname
 
   import com.s21g.rubyist.Pathname
@@ -35,9 +42,13 @@ Usage
   log.read             // => "Ruby\nScala"
   log.readlines        // => List("Ruby", "Scala")
 
-  // md5
-  import com.s21g.rubyist.Digest
-  Digest.MD5.hexdigest("ruby") // => "58e53d1324eef6265fdb97b08ed9aadf"
+
+  // Hashname
+
+  import com.s21g.rubyist.Hashname
+  val hash = Hashname("data/users/910.xml")
+  hash.path         // => "data/users/e/2/0/e205ee2a5de471a70c1fd1b46033a75f/910.xml"
+  hash.write("...") // write given string into above file
 
 
 Required

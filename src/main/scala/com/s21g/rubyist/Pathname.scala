@@ -13,10 +13,9 @@ object Pathname {
 }
 
 class Pathname(file: String) {
-  lazy val logical = Path(file)		   // logical path
-  lazy val dir     = logical.parent.path   // maybe override
-  lazy val physical = Path(Path(dir).resolve(logical.name).path)
-  lazy val path    = physical.path
+  lazy val logical  = Path(file)		   // logical path
+  lazy val physical = Path(file)
+  lazy val path     = physical.path
 
   def readlines = {
     val in = Source.fromPath(path)
@@ -28,7 +27,6 @@ class Pathname(file: String) {
   def write(buffer:String): Unit = {
     val out = new FileWriter(path)
     try{
-      physical.parent.createDirectory()
       out.write(buffer)
     }
     finally{ out.close }
@@ -51,6 +49,11 @@ class Hashname(file:String) extends Pathname(file) {
   // [then]  path is 'data/users/e/2/0/e205ee2a5de471a70c1fd1b46033a75f/910.xml'
   val digest = Digest.MD5.hexdigest(logical.stripExtension)
   val hashed = format("%s/%s/%s/%s", digest(0), digest(1), digest(2), digest)
-  override lazy val dir = logical.parent.resolve(hashed).path
+  override lazy val physical = Path(logical.parent.resolve(hashed).resolve(logical.name).path)
+
+  override def write(buffer:String): Unit = {
+    mkparent
+    super.write(buffer)
+  }
 }
 
