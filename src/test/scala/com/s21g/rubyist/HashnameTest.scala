@@ -21,8 +21,8 @@ class HathnameTest extends Spec with ShouldMatchers {
       // [when] digest of '910' is 'e205ee2a5de471a70c1fd1b46033a75f'
       val hash = Hashname(file)
 
-      // [then] path is 'data/users/e/2/0/e205ee2a5de471a70c1fd1b46033a75f/910.xml'
-      hash.path should equal("data/users/e/2/0/e205ee2a5de471a70c1fd1b46033a75f/910.xml")
+      // [then] path is "data/users/e/20/5ee/e205ee2a5de471a70c1fd1b46033a75f/910.xml"
+      hash.path should equal("data/users/e/20/5ee/e205ee2a5de471a70c1fd1b46033a75f/910.xml")
     }
 
     describe("should write and read physical files") {

@@ -47,7 +47,7 @@ Usage
 
   import com.s21g.rubyist.Hashname
   val hash = Hashname("data/users/910.xml")
-  hash.path         // => "data/users/e/2/0/e205ee2a5de471a70c1fd1b46033a75f/910.xml"
+  hash.path         // => "data/users/e/20/5ee/e205ee2a5de471a70c1fd1b46033a75f/910.xml"
   hash.write("...") // write given string into above file
 
 

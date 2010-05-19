@@ -48,7 +48,8 @@ class Hashname(file:String) extends Pathname(file) {
   // [when]  digest of '910' is 'e205ee2a5de471a70c1fd1b46033a75f'
   // [then]  path is 'data/users/e/2/0/e205ee2a5de471a70c1fd1b46033a75f/910.xml'
   val digest = Digest.MD5.hexdigest(logical.stripExtension)
-  val hashed = format("%s/%s/%s/%s", digest(0), digest(1), digest(2), digest)
+  val hashed = format("%s/%s%s/%s%s%s/%s", digest(0), digest(1), digest(2),
+		      digest(3), digest(4), digest(5), digest)
   override lazy val physical = Path(logical.parent.resolve(hashed).resolve(logical.name).path)
 
   override def write(buffer:String): Unit = {
