@@ -57,5 +57,22 @@ class PathnameTest extends Spec with ShouldMatchers {
       path.exists should be(true)
       path.isDirectory should be(true)
     }
+
+    describe("should concat pathname") {
+      val a = Pathname("a")
+      val b = Pathname("b")
+      val c = a + b
+
+      c.getClass should equal(a.getClass)
+      c.path should equal("a/b")
+    }
+
+    describe("should concat path string") {
+      val a = Pathname("a")
+      val c = a + "b"
+
+      c.getClass should equal(a.getClass)
+      c.path should equal("a/b")
+    }
   }
 }

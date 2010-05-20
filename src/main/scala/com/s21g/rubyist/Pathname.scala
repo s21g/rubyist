@@ -32,6 +32,9 @@ class Pathname(file: String) {
     finally{ out.close }
   }
 
+  def +(that:Pathname) = Pathname(logical.resolve(that.path).path)
+  def +(that:String)   = Pathname(logical.resolve(that).path)
+
   // Ruby#extname contains "." but Java#extension doesn't
   def extname  = if (logical.name.contains(".")) "."+logical.extension else ""
 
@@ -46,7 +49,7 @@ object Hashname {
 class Hashname(file:String) extends Pathname(file) {
   // [given] file is 'data/uesrs/910.xml'
   // [when]  digest of '910' is 'e205ee2a5de471a70c1fd1b46033a75f'
-  // [then]  path is 'data/users/e/2/0/e205ee2a5de471a70c1fd1b46033a75f/910.xml'
+  // [then]  path is 'data/users/e/20/5ee/e205ee2a5de471a70c1fd1b46033a75f/910.xml'
   val digest = Digest.MD5.hexdigest(logical.stripExtension)
   val hashed = format("%s/%s%s/%s%s%s/%s", digest(0), digest(1), digest(2),
 		      digest(3), digest(4), digest(5), digest)
