@@ -33,8 +33,9 @@ class Pathname(file: String) {
     finally{ out.close }
   }
 
-  def +(that:Pathname) = Pathname(logical.resolve(that.path).path)
-  def +(that:String)   = Pathname(logical.resolve(that).path)
+  def +(that:String): Pathname = Pathname(logical.resolve(that).path)
+  def +(that:Pathname): Pathname = this + that.path
+//  implicit def stringToPathname(str: String) = new Pathname(str)
 
   // Ruby#extname contains "." but Java#extension doesn't
   def extname  = if (logical.name.contains(".")) "."+logical.extension else ""

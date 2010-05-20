@@ -67,20 +67,26 @@ class PathnameTest extends Spec with ShouldMatchers {
     }
 
     describe("should concat pathname") {
-      val a = Pathname("a")
-      val b = Pathname("b")
-      val c = a + b
+      val path = Pathname("a") + Pathname("b")
 
-      c.getClass should equal(a.getClass)
-      c.path should equal("a/b")
+      path.getClass should equal(Pathname("").getClass)
+      path.path should equal("a/b")
     }
 
     describe("should concat path string") {
-      val a = Pathname("a")
-      val c = a + "b"
+      val path = Pathname("a") + "b"
 
-      c.getClass should equal(a.getClass)
-      c.path should equal("a/b")
+      path.getClass should equal(Pathname("").getClass)
+      path.path should equal("a/b")
     }
+
+/* // This doesn't pass. why???
+    describe("should convert implicitly String to Pathname") {
+      val path = "a" + Pathname("b")
+
+      path.getClass should equal(Pathname("").getClass)
+      path.path should equal("a/b")
+    }
+    */
   }
 }

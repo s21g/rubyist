@@ -2,7 +2,7 @@ import org.scalatest.Spec
 import org.scalatest.matchers.ShouldMatchers
 
 import java.io.File
-import com.s21g.rubyist.{Pathname,Hashname}
+import com.s21g.rubyist._
 
 class HathnameTest extends Spec with ShouldMatchers {
 
