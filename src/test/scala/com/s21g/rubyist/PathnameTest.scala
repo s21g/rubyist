@@ -37,6 +37,14 @@ class PathnameTest extends Spec with ShouldMatchers {
       path.read should equal("rubyist")
     }
 
+    describe("should automatically create parent directory in write") {
+      cleanDir("tmp")
+      val path = Pathname("tmp/Pathname/write/should/create/parent")
+      path.parent.exists should equal(false)
+      path.write("xxx")
+      path.parent.exists should equal(true)
+    }
+    
     describe("should read lines") {
       langs.readlines should equal(List("Ruby","Scala"))
     }

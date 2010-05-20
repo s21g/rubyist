@@ -25,6 +25,7 @@ class Pathname(file: String) {
   def read: String = readlines.mkString
 
   def write(buffer:String): Unit = {
+    mkparent
     val out = new FileWriter(path)
     try{
       out.write(buffer)
@@ -54,10 +55,5 @@ class Hashname(file:String) extends Pathname(file) {
   val hashed = format("%s/%s%s/%s%s%s/%s", digest(0), digest(1), digest(2),
 		      digest(3), digest(4), digest(5), digest)
   override lazy val physical = Path(logical.parent.resolve(hashed).resolve(logical.name).path)
-
-  override def write(buffer:String): Unit = {
-    mkparent
-    super.write(buffer)
-  }
 }
 
