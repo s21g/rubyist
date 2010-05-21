@@ -2,14 +2,14 @@ import org.scalatest.Spec
 import org.scalatest.matchers.ShouldMatchers
 
 import java.io.File
+import org.apache.commons.io._
+
 import com.s21g.rubyist._
 
 class HathnameTest extends Spec with ShouldMatchers {
-
-  // TODO: delete files recursively
   def cleanDir(path:String): Unit = {
+    FileUtils.deleteDirectory(new File(path))
     val dir = new File(path)
-    if (dir.exists) dir.delete()
     dir.mkdirs
   }
 
