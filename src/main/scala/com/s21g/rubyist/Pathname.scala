@@ -33,6 +33,15 @@ class Pathname(file: String) {
     finally{ out.close }
   }
 
+  def append(buffer:String): Unit = {
+    mkparent
+    val out = new FileWriter(path, true)
+    try{
+      out.write(buffer)
+    }
+    finally{ out.close }
+  }
+
   def +(that:String): Pathname = Pathname(logical.resolve(that).path)
   def +(that:Pathname): Pathname = this + that.path
 //  implicit def stringToPathname(str: String) = new Pathname(str)
