@@ -18,11 +18,29 @@ class Pathname(file: String) {
   lazy val path     = physical.path
 
   def readlines = {
-    val in = Source.fromPath(path)
+    val in = Source.fromFile(path)
     try { in.getLines().toList }
     finally { in.close }
   }
   def read: String = readlines.mkString
+
+  def eachline(code: String => Unit) {
+    var done = false
+    var line:String = null
+    val stream = new FileInputStream(path)
+    val reader = new BufferedReader(new InputStreamReader(stream))
+
+    try {
+      while (!done) {
+	line = reader.readLine()
+
+	if (line == null)
+	  done = true
+	else
+	  code(line)
+      }
+    } finally { reader.close }
+  }
 
   def write(buffer:String): Unit = {
     mkparent
