@@ -7,23 +7,23 @@ class RescueableTest extends Spec with ShouldMatchers {
 
     describe("(with exceptions)") {
       describe("should rescue exceptions") {
-	val num = "1234x1234".toLong rescue 0
-	num should equal(0)
+        val num = "1234x1234".toLong rescue 0
+        num should equal(0)
       }
     }
 
     describe("(without exceptions)") {
       describe("should affect nothing") {
-	val num = "12341234".toLong rescue 0
-	num should equal(12341234)
+        val num = "12341234".toLong rescue 0
+        num should equal(12341234)
       }
 
       describe("should not evalute rescued value") {
-	class Foo(var value:Int) { def succ { value += 1} }
-	var foo = new Foo(0)
-	foo.value should equal(0)
-	val num = "12341234".toLong rescue foo.succ
-	foo.value should equal(0)
+        class Foo(var value:Int) { def succ { value += 1} }
+        var foo = new Foo(0)
+        foo.value should equal(0)
+        val num = "12341234".toLong rescue foo.succ
+        foo.value should equal(0)
       }
     }
 
