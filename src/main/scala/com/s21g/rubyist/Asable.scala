@@ -1,9 +1,11 @@
 package com.s21g.rubyist
 
-object As {
-  class Asable[A](a: => A) { 
+trait Asable {
+  class Asable(a: => Any) { 
     def as[B] = a.asInstanceOf[B]
   }
 
-  implicit def anyToAsable[A](a: => A) = new Asable(a)
+  implicit def anyToAsable(a: => Any) = new Asable(a)
 }
+
+object As extends Asable
